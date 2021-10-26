@@ -1,0 +1,24 @@
+- hosts: desktops
+  tasks:
+
+    - name: Upgrade all packages Debian/ubuntu servers
+      apt: 
+        name: "*"
+        update_cache: yes
+        state: latest
+      when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+      register: result2
+
+    - debug:
+        var: result2.stdout_lines
+
+    - name: Upgrade all packages Centos/Rocky Servers
+      yum:
+        name: "*"
+        update_cache: yes
+        state: latest
+      when: ansible_facts['os_family'] == "RedHat" or ansible_distribution == "Rocky"
+      register: result3
+
+    - debug:
+        var: result3.stdout_lines
