@@ -6,7 +6,7 @@
         name: "*"
         update_cache: yes
         state: latest
-      when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+      when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu' ansible_distribution == 'Linux Mint'
       register: result2
 
     - debug:
