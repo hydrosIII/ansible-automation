@@ -8,3 +8,9 @@
       apt: 
         name: "*"
         state: latest
+
+    - name: upgrade Alpine
+       apk: 
+          upgrade: yes
+          update_cache: yes
+        register: result
