@@ -1,16 +1,38 @@
 - hosts: servers
   tasks:
-    - name: Update cache 
-      apt:
-       update_cache: yes
-         
-    - name: Upgrade all packages on servers
+
+    - name: Upgrade all packages Debian/ubuntu servers
       apt: 
         name: "*"
+        update_cache: yes
         state: latest
+      when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+      register: result2
 
-    - name: upgrade Alpine
-       apk: 
-          upgrade: yes
-          update_cache: yes
-        register: result
+    - debug:
+        var: result2.stdout_lines
+
+# update Alpine Machines
+    
+    - name: Upgrade all Alpine Linux Machines   
+      apk:
+       update_cache: yes
+       available: yes
+       state: latest
+      when: ansible_distribution == "Alpine"
+      register: result
+
+    - debug:
+        var: result.stdout_lines
+
+
+    - name: Upgrade all packages Centos/Rocky Servers
+      yum:
+        name: "*"
+        update_cache: yes
+        state: latest
+      when: ansible_facts['os_family'] == "RedHat" or ansible_distribution == "Rocky"
+      register: result3
+
+    - debug:
+        var: result3.stdout_lines
