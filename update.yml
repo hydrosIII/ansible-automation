@@ -9,7 +9,7 @@
         name: "*"
         state: latest
 
-- hosts: dnf
+- hosts: yum
   tasks:
     - name: DNF update the system
       dnf:
