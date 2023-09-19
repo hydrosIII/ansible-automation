@@ -1,4 +1,4 @@
-- hosts: servers
+- hosts: apt
   tasks:
     - name: Update cache 
       apt:
@@ -8,3 +8,11 @@
       apt: 
         name: "*"
         state: latest
+
+- hosts: dnf
+  tasks:
+    - name: DNF update the system
+      dnf:
+       name:  "*"
+       state: latest
+
