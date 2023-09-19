@@ -18,11 +18,11 @@
 
 
 - hosts: apk
-   tasks:
+  tasks:
     - name: Update Alpine packages cache
       community.general.apk:
           update_cache: true
-     - name: Upgrade Alpine Linux packages now
-       community.general.apk:
+    - name: Upgrade Alpine Linux packages now
+      community.general.apk:
           upgrade: yes
 
