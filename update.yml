@@ -25,17 +25,3 @@
     - name: Upgrade Alpine Linux packages.
       community.general.apk:
           upgrade: yes
-
-    - name: Run Shell Command with Pipe and Capture Status
-      shell: "set -o pipefail; apk list -I | grep '^linux-lts'; echo $?"
-      register: pipe_status_result
-      changed_when: false
-
-    - name: Extract Exit Status from Result
-      set_fact:
-        pipe_exit_status: "{{ pipe_status_result.stdout_lines[-1] }}"
-
-    - name: Print the value of the variable "pipe_exit_status"
-      debug:
-          var: pipe_exit_status
-
