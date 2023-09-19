@@ -1,17 +1,17 @@
 - hosts: apt
   tasks:
-    - name: Update cache 
+    - name: Update cache on Debian and Ubuntu Servers
       apt:
        update_cache: yes
          
-    - name: Upgrade all packages on servers
+    - name: Upgrade all packages on Debian and Ubuntu servers
       apt: 
         name: "*"
         state: latest
 
 - hosts: yum
   tasks:
-    - name: DNF update the system
+    - name: Update and upgrade packages in Alma Linux Servers.
       dnf:
        name:  "*"
        state: latest
@@ -19,10 +19,10 @@
 
 - hosts: apk
   tasks:
-    - name: Update Alpine packages cache
+    - name: Update cache in Alpine Linux Servers
       community.general.apk:
           update_cache: true
-    - name: Upgrade Alpine Linux packages now
+    - name: Upgrade Alpine Linux packages.
       community.general.apk:
           upgrade: yes
 
