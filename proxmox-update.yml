@@ -1,0 +1,12 @@
+- hosts: proxmox
+
+  tasks:
+    - name: Update cache on Proxmox servers
+      apt:
+        update_cache: yes
+
+    - name: Upgrade all packages on Proxmox server
+      apt:
+        name: "*"
+        state: latest
+
